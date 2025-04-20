@@ -1,5 +1,5 @@
 import java.util.*;
-class BinarySearch
+public class BinarySearch
 {
 	public static void main(String str[]) {
 		System.out.println("Enter the Array length : ");
@@ -12,21 +12,45 @@ class BinarySearch
 			arr[i] = r.nextInt(100);
 		}
 		System.out.println("Gerated array ::  "+ Arrays.toString(arr));
+
+		// Sorting
+		for(int i=0;i<length; i++) {
+			for(int j = i+1; j<length;j++) {
+				if (arr[i] > arr[j]) {
+					int temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
+				}
+			}
+		}
+		System.out.println("Gerated array ::  "+ Arrays.toString(arr));
+
+		// Searching
+		long startTime = System.currentTimeMillis();
 		System.out.println(" :: Enter the Element you want to search 0-99 :: ");
 		int toBeFound = s.nextInt();
 		boolean isFound = false;
-		int index = -1 ;
-		for(int i=0;i<length;i++){
-			if(arr[i] == toBeFound) {
+		int low = 0 ;
+		int high = length-1;
+		while (low <= high) {
+			int middle = (low + high) / 2;
+			if (arr[middle] == toBeFound) {
 				isFound = true;
-				index = i+1;
+				System.out.println("Element found at position " + (middle + 1));
+				break;
+			}
+			else if (arr[middle] < toBeFound) {
+				low = middle + 1;
+			}
+			else {
+				high = middle - 1;
 			}
 		}
-		if(isFound){
-			System.out.println("Entered Element found at "+ index + "th position..");
-		}
-		else {
+		if(!isFound)
 			System.out.println("Entered Element not found..");
-		}
+		long endTime = System.currentTimeMillis();
+		long duration = endTime - startTime;
+		// duration
+		System.out.println("Task took " + duration + " ms");
 	}
 }
