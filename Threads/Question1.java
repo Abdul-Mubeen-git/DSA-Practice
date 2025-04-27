@@ -25,7 +25,7 @@ public class Question1 {
         Runnable oddRunnable = () -> {
             for (int i=1; i<nameChars.length;i += 2) {
                 synchronized (lock) {
-                    System.out.println("Even Thread : "+ nameChars[i]);
+                    System.out.println("odd Thread : "+ nameChars[i]);
                     lock.notify();
                     try {
                         if(i+1 < nameChars.length)

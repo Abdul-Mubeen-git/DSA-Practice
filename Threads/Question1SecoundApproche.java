@@ -20,7 +20,7 @@ public class Question1SecoundApproche {
         Runnable r2 = () -> {
             while (counter.get() < name.length()-1) {
                 if(counter.get() % 2 == 1) {
-                    System.out.println("1st Thread : " + name.charAt(counter.get()));
+                    System.out.println("2nd Thread : " + name.charAt(counter.get()));
                     counter.incrementAndGet();
                 }
             }
