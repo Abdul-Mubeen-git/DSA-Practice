@@ -1,28 +1,33 @@
 package Threads;
 
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Question1SecoundApproche {
-    int counter;
-    synchronized public void increment() {
-        counter++;
-    }
+    private final static String name = "Mubeen";
+    private final static AtomicInteger counter = new AtomicInteger(0);
     public static void main(String[] args) {
-        String name = "Mubeen";
-        int lenght = name.length();
-        Runnable enveRunnable = () -> {
-          for(int i=0; i<lenght;i += 2) {
-              System.out.println("1st Thread : " + name.charAt(i));
+
+        Runnable r1 = () -> {
+          while (counter.get() < name.length()-1) {
+              if(counter.get() % 2 == 0) {
+                  System.out.println("1st Thread : " + name.charAt(counter.get()));
+                  counter.incrementAndGet();
+              }
           }
         };
 
-        Runnable oddRunnable = () -> {
-            for(int i=1; i<lenght;i += 2) {
-                System.out.println("2nd Thread : " + name.charAt(i));
+        Runnable r2 = () -> {
+            while (counter.get() < name.length()-1) {
+                if(counter.get() % 2 == 1) {
+                    System.out.println("1st Thread : " + name.charAt(counter.get()));
+                    counter.incrementAndGet();
+                }
             }
         };
 
-        Thread t1 = new Thread(enveRunnable);
-        Thread t2 = new Thread(oddRunnable);
+        Thread t1 = new Thread(r1);
+        Thread t2 = new Thread(r2);
         t1.start();
         t2.start();
     }

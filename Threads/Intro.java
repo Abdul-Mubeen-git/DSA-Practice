@@ -5,7 +5,7 @@ import java.util.*;
 class Intro {
 
     // what are thread ? Threads are lightweight and smallest/sub task
-    // why it's light weight? Thread reqiried fewer resourses to manage compare to process
+    // why it's light weight? Thread required fewer resourses to manage compare to process
     // every java program have at least one thread (JVM creates a main thread when the program starts.)
     public static void main (String... str) {
         Thread t = Thread.currentThread(); //  main thread
